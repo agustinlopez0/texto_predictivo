@@ -2,18 +2,21 @@
 #include <stdlib.h>
 #include <ctype.h> 
 #include <string.h>
+#include <assert.h>
 
 #define BUFFER_SIZE 255
+
+void test_sanitizar_string();
 
 // Recibe el nombre de un archivo de texto y el nombre de la persona con la que
 //   se esta trabajando, en Entradas/<nombre_persona>.txt escribe
 //   el texto del archivo sanitizado, solamente con caracteres alfabetici
 void agregar_entrada(char nombre_archivo[], char nombre_persona[]);
 
-void sanitizar(char linea[], FILE *archivo_entradas);
-
+char* sanitizar_string(char linea[]);
 
 int main(int argc, char *argv[]) {
+    // test_sanitizar_string();
     if (argc != 2) {
         printf("Uso: %s <nombre_persona>\n", argv[0]);
         return 1;
@@ -22,10 +25,11 @@ int main(int argc, char *argv[]) {
     char nombre_persona[strlen(argv[1]) + 1];
     strcpy(nombre_persona, argv[1]);
 
+    // Si no existe Entradas/<nombre_persona>.txt lo crea y si existe
+    //   lo deja en blanco
     char cmd[100];
     sprintf(cmd, "truncate -s 0 Entradas/%s.txt", nombre_persona);
     system(cmd);
-
     
     sprintf(cmd, "ls Textos/%s > archivo.txt", nombre_persona);
     system(cmd);
@@ -36,16 +40,17 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    char buff[BUFFER_SIZE];
-    while (fgets(buff, BUFFER_SIZE, fp) != NULL) {
-        // Eliminar el carácter de nueva línea
-        buff[strcspn(buff, "\n")] = '\0';
-        agregar_entrada(buff, nombre_persona);
+    char nombre_archivo[BUFFER_SIZE];
+    while (fgets(nombre_archivo, BUFFER_SIZE, fp) != NULL) {
+        // Elimina el '\n'
+        nombre_archivo[strcspn(nombre_archivo, "\n")] = '\0';
+        agregar_entrada(nombre_archivo, nombre_persona);
     }
 
     fclose(fp);
 
-
+    sprintf(cmd, "python3 main.py %s", nombre_persona);
+    system(cmd);
    
     return 0;
 }
@@ -63,21 +68,43 @@ void agregar_entrada(char nombre_archivo[], char nombre_persona[]){
 
     char buff[BUFFER_SIZE];
     while (fgets(buff, BUFFER_SIZE, archivo_textos) != NULL) {
-        sanitizar(buff, archivo_entradas);
+        char* aux = sanitizar_string(buff);
+        fputs(aux, archivo_entradas);
+        free(aux);
     }
     fclose(archivo_textos); 
     fclose(archivo_entradas);
 }
 
 
-void sanitizar(char linea[], FILE *archivo_entradas) {
+char* sanitizar_string(char linea[]) {
+    char* salida = malloc(sizeof(char) * strlen(linea) + 1);
+    int cont = 0;
     for(int i = 0; i < strlen(linea); i++){
         if(isalpha(linea[i]) || linea[i] == ' '){
-            fputc(tolower(linea[i]), archivo_entradas);
+            salida[cont++] = tolower(linea[i]);
         } else if(linea[i] == '\n' && linea[i - 1] != '.'){
-            fputc(' ', archivo_entradas);
+            salida[cont++] = ' ';
         } else if(linea[i] == '.'){
-            fputc('\n', archivo_entradas);
+            salida[cont++] = '\n';
         }
     }
+    salida[cont] = '\0';
+    return salida;
+}
+
+void test_sanitizar_string() {
+    // Casos de prueba
+    char cadena_prueba1[] = "esta es una cadena sin caracteres especiales";
+    char cadena_prueba2[] = "Este es un texto.\nCon saltos de\nlinea.";
+    char cadena_prueba3[] = "";
+    char cadena_prueba4[] = "TEXTO CON LETRAS MAYUSCULAS";
+
+    // Ejecución de las pruebas
+    assert(strcmp(sanitizar_string(cadena_prueba1), cadena_prueba1) == 0);
+    assert(strcmp(sanitizar_string(cadena_prueba2), "este es un texto\ncon saltos de linea\n") == 0);
+    assert(strcmp(sanitizar_string(cadena_prueba3), "") == 0);
+    assert(strcmp(sanitizar_string(cadena_prueba4), "texto con letras mayusculas") == 0);
+
+    printf("Todas las pruebas han pasado correctamente.\n");
 }
