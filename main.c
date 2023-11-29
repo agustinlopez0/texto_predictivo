@@ -34,20 +34,20 @@ int main(int argc, char *argv[]) {
     sprintf(cmd, "ls Textos/%s > archivo.txt", nombre_persona);
     system(cmd);
 
-    FILE *fp = fopen("archivo.txt", "r");
-    if (fp == NULL) {
+    FILE *nombres_textos = fopen("archivo.txt", "r");
+    if (nombres_textos == NULL) {
         printf("Error al abrir el archivo.\n");
         return 1;
     }
 
-    char nombre_archivo[BUFFER_SIZE];
-    while (fgets(nombre_archivo, BUFFER_SIZE, fp) != NULL) {
+    char nombre_texto[BUFFER_SIZE];
+    while (fgets(nombre_texto, BUFFER_SIZE, nombres_textos) != NULL) {
         // Elimina el '\n'
-        nombre_archivo[strcspn(nombre_archivo, "\n")] = '\0';
-        agregar_entrada(nombre_archivo, nombre_persona);
+        nombre_texto[strcspn(nombre_texto, "\n")] = '\0';
+        agregar_entrada(nombre_texto, nombre_persona);
     }
 
-    fclose(fp);
+    fclose(nombres_textos);
 
     sprintf(cmd, "python3 main.py %s", nombre_persona);
     system(cmd);
