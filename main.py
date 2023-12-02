@@ -46,10 +46,10 @@ def completar_frase(frases_incompletas, oraciones):
     for oracion in frases_incompletas:
         oracion = oracion.split()
         for i, palabra in enumerate(oracion):
-            if palabra == '_':
+            if '_' in palabra:
                 anterior = oracion[i - 1] if i > 0 else ''
                 posterior = oracion[i + 1] if i < len(oracion) - 1 else ''
-                oracion[i] = procesar_palabra(anterior, posterior, frecuencias)
+                oracion[i] = palabra.replace('_', procesar_palabra(anterior, posterior, frecuencias))
         frases_completas.append(' '.join(oracion))
     return frases_completas
     
