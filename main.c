@@ -27,6 +27,8 @@ int main(int argc, char *argv[]) {
 
     char cmd[100];
 
+    system("mkdir -p Entradas Salidas");
+
     // Vacía el archivo si existe, de lo contrario, crea un archivo nuevo
     sprintf(cmd, "truncate -s 0 Entradas/%s.txt", nombre_persona);
     system(cmd);
@@ -54,11 +56,12 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(nombres_textos);
+    system("rm archivo.txt");
 
     // Ejecuta un script Python con el nombre de la persona como argumento
     sprintf(cmd, "python3 main.py %s", nombre_persona);
     system(cmd);
-   
+
     return 0;
 }
 
@@ -89,7 +92,7 @@ char* sanitizar_string(char linea[]) {
     char* salida = malloc(sizeof(char) * strlen(linea) + 1);
     int cont = 0;
     for (int i = 0; i < strlen(linea); i++) {
-        if (isalpha(linea[i])) {
+        if (isalnum(linea[i])) {
             salida[cont++] = tolower(linea[i]); 
         } else if (linea[i] == ' ' || linea[i] == '\n') {
             if (cont >= 1 && isalpha(salida[cont - 1])) {
@@ -116,5 +119,4 @@ void test_sanitizar_string() {
     assert(!strcmp(sanitizar_string(cadena_prueba4), "texto con letras mayusculas"));
     assert(!strcmp(sanitizar_string(cadena_prueba5), "este es un texto\ncon saltos de linea\n"));
 
-    printf("Todas las pruebas han pasado correctamente.\n");
 }

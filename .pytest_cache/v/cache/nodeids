@@ -1,0 +1,5 @@
+[
+  "main.py::test_generar_bigramas",
+  "main.py::test_procesar_palabra",
+  "main.py::test_completar_frases"
+]
