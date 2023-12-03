@@ -8,9 +8,6 @@
 
 void test_sanitizar_string();
 
-// Recibe el nombre de un archivo de texto y el nombre de la persona con la que
-//   se esta trabajando, en Entradas/<nombre_persona>.txt escribe
-//   el texto del archivo sanitizado, solamente con caracteres alfabetici
 void agregar_entrada(char nombre_archivo[], char nombre_persona[]);
 
 char* sanitizar_string(char linea[]);
@@ -25,8 +22,6 @@ int main(int argc, char *argv[]) {
     char nombre_persona[strlen(argv[1]) + 1];
     strcpy(nombre_persona, argv[1]);
 
-    // Si no existe Entradas/<nombre_persona>.txt lo crea y si existe
-    //   lo deja en blanco
     char cmd[100];
     sprintf(cmd, "truncate -s 0 Entradas/%s.txt", nombre_persona);
     system(cmd);
@@ -42,8 +37,7 @@ int main(int argc, char *argv[]) {
 
     char nombre_texto[BUFFER_SIZE];
     while (fgets(nombre_texto, BUFFER_SIZE, nombres_textos) != NULL) {
-        // Elimina el '\n'
-        nombre_texto[strcspn(nombre_texto, "\n")] = '\0';
+        nombre_texto[strlen(nombre_texto) - 1] = '\0';
         agregar_entrada(nombre_texto, nombre_persona);
     }
 
@@ -76,15 +70,16 @@ void agregar_entrada(char nombre_archivo[], char nombre_persona[]){
     fclose(archivo_entradas);
 }
 
-
 char* sanitizar_string(char linea[]) {
     char* salida = malloc(sizeof(char) * strlen(linea) + 1);
     int cont = 0;
     for(int i = 0; i < strlen(linea); i++){
-        if(isalpha(linea[i]) || linea[i] == ' '){
+        if(isalpha(linea[i])){
             salida[cont++] = tolower(linea[i]);
-        } else if(linea[i] == '\n' && linea[i - 1] != '.'){
-            salida[cont++] = ' ';
+        } else if(linea[i] == ' ' || linea[i] == '\n'){
+            if(cont >= 1 && isalpha(salida[cont - 1])){
+                salida[cont++] = ' ';
+            }
         } else if(linea[i] == '.'){
             salida[cont++] = '\n';
         }
@@ -99,12 +94,14 @@ void test_sanitizar_string() {
     char cadena_prueba2[] = "Este es un texto.\nCon saltos de\nlinea.";
     char cadena_prueba3[] = "";
     char cadena_prueba4[] = "TEXTO CON LETRAS MAYUSCULAS";
+    char cadena_prueba5[] = "Este es un texto.\n Con saltos de \n linea.";
 
     // Ejecución de las pruebas
     assert(strcmp(sanitizar_string(cadena_prueba1), cadena_prueba1) == 0);
     assert(strcmp(sanitizar_string(cadena_prueba2), "este es un texto\ncon saltos de linea\n") == 0);
     assert(strcmp(sanitizar_string(cadena_prueba3), "") == 0);
     assert(strcmp(sanitizar_string(cadena_prueba4), "texto con letras mayusculas") == 0);
+    assert(strcmp(sanitizar_string(cadena_prueba5), "este es un texto\ncon saltos de linea\n") == 0);
 
     printf("Todas las pruebas han pasado correctamente.\n");
 }
