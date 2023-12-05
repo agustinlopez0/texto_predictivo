@@ -99,7 +99,9 @@ char* sanitizar_string(char linea[]) {
                 salida[cont++] = ' '; 
             }
         } else if (linea[i] == '.') {
-            salida[cont++] = '\n'; 
+            if(cont >= 1 && salida[cont - 1] != '\n'){
+                salida[cont++] = '\n';
+            }
         }
     }
     salida[cont] = '\0'; 
