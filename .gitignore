@@ -1,5 +1,9 @@
 Salidas/
 Entradas/
 descripcion
+<<<<<<< HEAD
 *.out
 main.out
+=======
+*.out
+>>>>>>> 56142d67ef53580c80f1b71ccf0e6de0d9ddde48
