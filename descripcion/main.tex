@@ -30,10 +30,10 @@
 \newenvironment{solution}{\textbf{Solution}}
 
 
-\lhead{}
-\rhead{} 
-\chead{\textbf{}}
-% \lfoot{Alejandro Rodríguez Costello}
+\lhead{Agustín López}
+\rhead{Licenciatura en Ciencias de la Computación} 
+\chead{}
+\lfoot{}
 \rfoot{Facultad de Ciencias Exactas Ingeniería y Agrimensura}
 
 
@@ -41,18 +41,17 @@
 \input{coverPage}
 
 
-\section{Programa C}
+\section{Lectura y procesamiento de archivos en C}
 El objetivo principal del programa escrito en C se centró en dos tareas principales:
 
 \begin{enumerate}
     \item \textbf{Leer archivos de la persona proporcionada como argumento:} \\
-    En primer lugar, el programa ejecuta el comando \texttt{ls Textos<nombre>.txt}, almacenando su salida en un archivo auxiliar denominado
+    En primer lugar, el programa ejecuta el comando \texttt{ls Textos<nombre>.txt}, almacenando su salida en un archivo auxiliar 
     \texttt{archivo.txt}. Esta acción tiene como fin conocer los nombres y la cantidad de textos escritos por la persona. Posteriormente, emplea un bucle while para leer línea por línea el archivo, procesando cada texto de manera individual en cada iteración.
 
     \item \textbf{Agregar la entrada sanitizada al archivo \texttt{Entradas/<nombre>.txt}:} \\
     En cada iteración del bucle mencionado, se ejecuta la función \texttt{agregar\_entrada}, la cual incorpora al archivo 
-    \texttt{Entradas/<nombre>.txt} el contenido sanitizado del texto actual. Esta acción se realiza
-     siguiendo las pautas indicadas en el enunciado del trabajo.
+    \texttt{Entradas/<nombre>.txt} el contenido sanitizado del texto actual.
 \end{enumerate}
 
 Una vez finalizado el bucle, se invoca al programa escrito en Python, el cual se encuentra listo para operar
@@ -60,19 +59,85 @@ Una vez finalizado el bucle, se invoca al programa escrito en Python, el cual se
 
 En el programa en C, no hubo decisiones particularmente relevantes, ya que como el objetivo era bastante claro y directo, no logré encontrar muchas alternativas para abordarlo.
 
-\section{Programa Python}
-El programa en Python fue diseñado con el propósito principal de trabajar con tres archivos distintos: la entrada, las frases incompletas y la salida.
+\section{Algoritmo de predicción en Python}
+El programa en Python se diseñó con el propósito principal de trabajar con tres archivos distintos: la entrada, las frases incompletas y la salida.
 
 \begin{enumerate}
     \item \textbf{Carga inicial de datos:} \\
-    La primera acción consistió en cargar las oraciones del archivo de entrada y las frases incompletas en dos listas de strings separadas.
+    La primera acción consistió en cargar las oraciones del archivo de entrada y las frases incompletas en
+     dos listas de strings separadas, donde cada string es una linea del archivo.
     
     \item \textbf{Lógica central en la función \texttt{completar\_frases}:} \\
-    Esta función posee la lógica central y la decisión más desafiante del programa: el algoritmo para determinar la palabra más probable. Después de investigar, encontré inicialmente el modelo
-     de trigramas, basado en la creación de un diccionario donde las claves eran ternas de strings y los valores indicaban la frecuencia de ocurrencia en el archivo de entrada. Sin embargo, se identificó un
-      problema al tratar la frase ``te \_ fumabas unos chinos en Madrid''. A pesar de encontrar múltiples instancias donde ``te'' era el primer elemento de la 3-upla, las palabras ``fumabas'', ``unos'', ``chinos'', ``en'' y ``Madrid'' no aparecían en el texto, lo que resultaba en un fallo en el modelo de trigramas.
+    Esta función posee la lógica central y la decisión más desafiante del programa: el algoritmo para determinar la palabra 
+    más probable. Después de investigar, el algoritmo que me pareció mejor para abordar este problema fue el
+    modelo de bigramas. 
+    El algoritmo comienza procesando el texto de entrada y lo convierte en un diccionario. En este diccionario,
+     las claves son tuplas de todos los pares de palabras consecutivas, y el valor es la cantidad de
+      ocurrencias de esas palabras consecutivas. Por ejemplo:
+
+
     
-    Para superar esta dificultad, adapté el modelo y se implementaron 2 duplas, lo que permitió una mejor aproximación al contexto. Al analizar las palabras posteriores a ``te'' y anteriores a ``fumabas'', se creó una estructura donde cada palabra candidata era una clave y el valor representaba la probabilidad de ser la palabra correcta. Finalmente, se seleccionó la palabra con el puntaje más alto para reemplazar el guion bajo en la frase incompleta.
+    \begin{center}
+        \centering
+        \textit{quiza no sea el vino} \\
+        \textit{quiza no sea el postre} \\
+        \textit{quiza no sea} \\
+        \textit{no sea nada}
+    \end{center}
+
+    Quedaria representado como:
+
+    \begin{verbatim}
+        {("quiza", "no"): 3, ("no", "sea"): 4, ("sea", "el"): 2, 
+        ("el", "vino"): 1, ("el", "postre"): 1, ("sea", "nada"): 1}
+    \end{verbatim}
+
+    Luego, el programa trabaja con el archivo de frases incompletas línea por línea. Identifica las
+     palabras anteriores y posteriores al guion bajo para compararlas con el diccionario de bigramas.
+      Utiliza un diccionario donde las claves son las palabras candidatas y los valores son números
+       enteros que representan la posibilidad de ser la palabra correcta.
+       Si una palabra candidata aparece entre la palabra anterior y la posterior al guion bajo, se
+        considera como la palabra correcta. 
+        Si ninguna palabra candidata cumple esa condición entonces se elije la que mas veces aparece
+        como anterior o posterior
+        Y por ultimo, si no hay suficiente información para 
+        predecir la palabra de esta manera, el programa selecciona la palabra que aparece con mayor
+         frecuencia en el texto de entrada.
+
+
+    Por ejemplo veamos que pasa con estas lineas siguiendo el ejemplo anterior:
+    \begin{verbatim}
+esta manera _ no sea la muerte
+maldito sea _ guru
+    \end{verbatim}
+    En el primer caso, el algoritmo busca las tuplas donde "manera" es la primera componente y "no"
+     es la segunda. Encuentra que "no" aparece 3 veces después de "quiza", por lo
+      que asigna 3 puntos de posibilidad. Esta palabra se elige finalmente.
+      
+      De manera similar, en el segundo ejemplo, busca las tuplas donde "sea" es la primera componente
+       y encuentra que después de "sea", "el" aparece 2 veces y "nada" 1 vez. Con esta información, asigna
+        puntajes de 2 para "el" y 1 para "nada". La palabra elegida es "el" por tener el puntaje más alto.
+
+
+    \begin{verbatim}
+esta manera quiza no sea la muerte
+maldito sea el guru
+    \end{verbatim}
+
+    \item \textbf{Alternativas:} \\
+    Encontrar el algoritmo que consideré adecuado resultó ser más complicado de lo esperado y fue la parte que más
+     tiempo me llevó. Mientras buscaba soluciones, consideré algunas ideas que no desarrollé porque
+     noté que quizás iba a complicar innecesariamente el programa.
+
+    Por ejemplo, pensé en crear listas de las palabras anteriores y posteriores a aquella que s
+    e quería predecir, y luego compararlas de 
+    alguna manera con el archivo de entrada. Sin embargo, para obtener palabras candidatas, hubiera necesitado 
+    analizar prácticamente cada una de las palabras del archivo de entrada. También consideré inicialmente el 
+    uso de trigramas, donde la palabra candidata sería la del medio de la tríada, pero pronto encontré 
+    dificultades para asignar puntajes a las palabras candidatas. Aunque me pareció que habría
+    alguna manera de hacerlo de esa manera, decidí replantearlo utilizando bigramas.
+    Finalmente, consideré que fue una decisión acertada, ya que el 
+    enfoque con bigramas me resultó más intuitivo en la implementación del algoritmo.
 \end{enumerate}
 
 \end{document}

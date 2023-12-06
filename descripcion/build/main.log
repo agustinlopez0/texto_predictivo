@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.24)  28 NOV 2023 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.24)  5 DEC 2023 23:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/agus_/Desktop/TP_final/tp4-AMII/main.tex
-(c:/Users/agus_/Desktop/TP_final/tp4-AMII/main.tex
+**c:/Users/agus_/Desktop/TP_final/descripcion/main.tex
+(c:/Users/agus_/Desktop/TP_final/descripcion/main.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-03-30> (C:\Users\agus_\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -415,7 +415,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip133
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 16.
- (c:\Users\agus_\Desktop\TP_final\tp4-AMII\build\main.aux)
+ (c:\Users\agus_\Desktop\TP_final\descripcion\build\main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -491,7 +491,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 40.
- (c:\Users\agus_\Desktop\TP_final\tp4-AMII\build\main.out) (c:\Users\agus_\Desktop\TP_final\tp4-AMII\build\main.out)
+ (c:\Users\agus_\Desktop\TP_final\descripcion\build\main.out) (c:\Users\agus_\Desktop\TP_final\descripcion\build\main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -510,23 +510,23 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.78 \end{document}
-                    [1] (c:\Users\agus_\Desktop\TP_final\tp4-AMII\build\main.aux)
+l.112     \end{verbatim}
+                         [1] [2] (c:\Users\agus_\Desktop\TP_final\descripcion\build\main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B274DC584F0DFF963E0C93DC5459B628;217.
+(rerunfilecheck)             Checksum: 7B4A5F222FE46A2D9762F93400CB2562;484.
  ) 
 Here is how much of TeX's memory you used:
- 12272 strings out of 476331
- 197838 string characters out of 5787765
- 1859660 words of memory out of 5000000
- 32525 multiletter control sequences out of 15000+600000
- 514579 words of font info for 40 fonts, out of 8000000 for 9000
+ 12276 strings out of 476331
+ 197922 string characters out of 5787765
+ 1862660 words of memory out of 5000000
+ 32526 multiletter control sequences out of 15000+600000
+ 514925 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 76i,11n,77p,531b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:\Users\agus_\Desktop\TP_final\tp4-AMII\build\main.pdf (2 pages, 169731 bytes).
+ 76i,12n,77p,524b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on c:\Users\agus_\Desktop\TP_final\descripcion\build\main.pdf (3 pages, 187708 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 8 named destinations out of 1000 (max. 500000)
+ 67 PDF objects out of 1000 (max. 8388607)
+ 10 named destinations out of 1000 (max. 500000)
  22 words of extra memory for PDF output out of 10000 (max. 10000000)
 

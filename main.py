@@ -1,4 +1,5 @@
 import sys
+import random
 from collections import defaultdict
 
 # Devuelve una lista con las lineas del archivo Entradas/<nombre_persona>.txt
@@ -26,21 +27,51 @@ def generar_bigramas(oraciones):
             frecuencias[bigrama] += 1
     return frecuencias
 
+# Dado el diccionario de bigramas devuelve la palabra mas frecuente
+def palabra_mas_frecuente(bigramas):
+    frecuencias_palabras = {}
+    
+    for bigrama, frecuencia in bigramas.items():
+        palabra1, palabra2 = bigrama
+        
+        if palabra1 in frecuencias_palabras:
+            frecuencias_palabras[palabra1] += frecuencia
+        else:
+            frecuencias_palabras[palabra1] = frecuencia
+        
+        if palabra2 in frecuencias_palabras:
+            frecuencias_palabras[palabra2] += frecuencia
+        else:
+            frecuencias_palabras[palabra2] = frecuencia
+    
+    palabra_mas_comun = max(frecuencias_palabras, key=frecuencias_palabras.get)
+    return palabra_mas_comun
+
+
 # Con las palabras anterior y posterior, y el diccionario de bigramas analiza cual es la palabra con mayor probabilidad
 #   de estar entre esas dos palabras 
 def predecir_palabra(palabra_anterior, palabra_posterior, frecuencias):
     candidatas = defaultdict(int)
+    
     if palabra_anterior:
         for i in frecuencias:
             if i[0] == palabra_anterior:
                 candidatas[i[1]] += frecuencias[i]
+
     if palabra_posterior:
         for i in frecuencias:
             if i[1] == palabra_posterior:
+                if candidatas[i[0]]: 
+                    return i[0]
                 candidatas[i[0]] += frecuencias[i]
+
+            
     if candidatas:
         return max(candidatas, key=candidatas.get)
-    return "[Ninguna palabra encontrada]"
+    
+    # Si no encuentra ninguna palabra devuelve la mas frecuente
+    return palabra_mas_frecuente(frecuencias)
+
 
 # Recibe una lista de frases incompletas (con un '_' donde iria la palabra que queremos predecir) y una lista de strings
 #   que servira como informacion para predecir la palabra faltante
@@ -95,6 +126,9 @@ def test_generar_bigramas():
         ("y", "pregunto"): 1,
         ("que", "paso"): 4,
         ("paso", "que"): 2,
+        ("rezo", "rezo"): 3,
+        ("rezo", "por"): 1,
+        ("por", "vos"): 1
     }
 
 def test_procesar_palabra():
@@ -133,6 +167,17 @@ def test_completar_frases():
         "rezo por vos"
     ] 
     
-    
+def test_palabra_mas_frecuente():
+    oraciones_ejemplo = [
+        "en mi cancion te has perdido",
+        "no encontrarte trajo mala suerte",
+        "y pregunto",
+        "que paso que paso",
+        "que paso que paso",
+        "rezo rezo rezo rezo por vos"
+    ]
+    bigramas = generar_bigramas(oraciones_ejemplo)
+    assert palabra_mas_frecuente(bigramas) == "rezo"
+
 if __name__ == "__main__":
     main()
