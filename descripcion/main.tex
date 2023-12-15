@@ -50,7 +50,7 @@ El objetivo principal del programa escrito en C se centró en dos tareas princip
     \texttt{archivo.txt}. Esta acción tiene como fin conocer los nombres y la cantidad de textos escritos por la persona. Posteriormente, emplea un bucle while para leer línea por línea el archivo, procesando cada texto de manera individual en cada iteración.
 
     \item \textbf{Agregar la entrada sanitizada al archivo \texttt{Entradas/<nombre>.txt}:} \\
-    En cada iteración del bucle mencionado, se ejecuta la función \texttt{agregar\_entrada}, la cual incorpora al archivo 
+    En cada iteración del bucle, se ejecuta la función \texttt{agregar\_entrada}, la cual incorpora al archivo 
     \texttt{Entradas/<nombre>.txt} el contenido sanitizado del texto actual.
 \end{enumerate}
 
@@ -92,14 +92,15 @@ El programa en Python se diseñó con el propósito principal de trabajar con tr
         ("el", "vino"): 1, ("el", "postre"): 1, ("sea", "nada"): 1}
     \end{verbatim}
 
-    Luego, el programa trabaja con el archivo de frases incompletas línea por línea. Identifica las
-     palabras anteriores y posteriores al guion bajo para compararlas con el diccionario de bigramas.
-      Utiliza un diccionario donde las claves son las palabras candidatas y los valores son números
+    Luego, el programa trabaja con el archivo de frases incompletas línea por línea, identifica las
+     palabras anteriores y posteriores al guion bajo para compararlas con el diccionario de bigramas y 
+     utiliza un diccionario donde las claves son las palabras candidatas y los valores son números
        enteros que representan la posibilidad de ser la palabra correcta.
+        Si una palabra candidata aparece despues de la palabra anterior al guión bajo o antes de 
+        la palabra siguiente al guión bajo se le asigna 1 punto por cada ocurrencia de esto.
        Si una palabra candidata aparece entre la palabra anterior y la posterior al guion bajo, se
-        considera como la palabra correcta. 
-        Si ninguna palabra candidata cumple esa condición entonces se elije la que mas veces aparece
-        como anterior o posterior
+        le asigna 10 puntos ya que las probabilidades de que
+        sea la palabra correcta son mucho mas altas.
         Y por ultimo, si no hay suficiente información para 
         predecir la palabra de esta manera, el programa selecciona la palabra que aparece con mayor
          frecuencia en el texto de entrada.
@@ -129,8 +130,8 @@ maldito sea el guru
      tiempo me llevó. Mientras buscaba soluciones, consideré algunas ideas que no desarrollé porque
      noté que quizás iba a complicar innecesariamente el programa.
 
-    Por ejemplo, pensé en crear listas de las palabras anteriores y posteriores a aquella que s
-    e quería predecir, y luego compararlas de 
+    Por ejemplo, pensé en crear listas de las palabras anteriores y posteriores a aquella que se 
+    quería predecir, y luego compararlas de 
     alguna manera con el archivo de entrada. Sin embargo, para obtener palabras candidatas, hubiera necesitado 
     analizar prácticamente cada una de las palabras del archivo de entrada. También consideré inicialmente el 
     uso de trigramas, donde la palabra candidata sería la del medio de la tríada, pero pronto encontré 

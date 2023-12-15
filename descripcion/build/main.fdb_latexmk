@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1701829166 "c:/Users/agus_/Desktop/TP_final/descripcion/main.tex" "build/main.pdf" "main" 1701829168
+["pdflatex"] 1702325229 "c:/Users/agus_/Desktop/TP_final/descripcion/main.tex" "build/main.pdf" "main" 1702325231
   "C:/Users/agus_/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1694646054 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/agus_/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1692920797 23178960 ea9ac74e87f24ba7b73aa13bbbf4530f ""
   "C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -84,14 +84,14 @@
   "C:/Users/agus_/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575571282 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "C:/Users/agus_/AppData/Roaming/MiKTeX/tex/latex/zref/zref-abspage.sty" 1650051284 2245 c8a4088d07cffc2e5207730c738edd76 ""
   "C:/Users/agus_/AppData/Roaming/MiKTeX/tex/latex/zref/zref-base.sty" 1650051284 20785 71a3d72ab517959a6979c27e6176bec1 ""
-  "build/main.aux" 1701829168 857 1b69c3c99f644c7cc57852ffffc7868a "pdflatex"
-  "build/main.out" 1701829168 484 7b4a5f222fe46a2d9762f93400cb2562 "pdflatex"
-  "c:/Users/agus_/Desktop/TP_final/descripcion/main.tex" 1701829166 6747 1ba82af2ae39ad2d9a9347b6bb2e256a ""
+  "build/main.aux" 1702325231 857 1b69c3c99f644c7cc57852ffffc7868a "pdflatex"
+  "build/main.out" 1702325231 484 7b4a5f222fe46a2d9762f93400cb2562 "pdflatex"
+  "c:/Users/agus_/Desktop/TP_final/descripcion/main.tex" 1702325229 6864 b2cab0ed2e7e8521a414676cf32741fa ""
   "coverPage.tex" 1701183901 613 9888a8df4bce86f25ffc309f3a7eb550 ""
-  "main.tex" 1701829166 6747 1ba82af2ae39ad2d9a9347b6bb2e256a ""
+  "main.tex" 1702325229 6864 b2cab0ed2e7e8521a414676cf32741fa ""
   "unr.png" 1692921277 83550 05ba49b64c117ff9d234ccf03decb340 ""
   (generated)
-  "build/main.log"
-  "build/main.out"
-  "build/main.pdf"
   "build/main.aux"
+  "build/main.log"
+  "build/main.pdf"
+  "build/main.out"

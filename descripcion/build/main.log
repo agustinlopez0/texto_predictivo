@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.24)  5 DEC 2023 23:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.8.24)  11 DEC 2023 17:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -510,7 +510,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.112     \end{verbatim}
+l.113     \end{verbatim}
                          [1] [2] (c:\Users\agus_\Desktop\TP_final\descripcion\build\main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 7B4A5F222FE46A2D9762F93400CB2562;484.
@@ -524,7 +524,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  76i,12n,77p,524b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/agus_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:\Users\agus_\Desktop\TP_final\descripcion\build\main.pdf (3 pages, 187708 bytes).
+Output written on c:\Users\agus_\Desktop\TP_final\descripcion\build\main.pdf (3 pages, 187964 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)
